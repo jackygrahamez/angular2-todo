@@ -1,6 +1,4 @@
-System.register(['angular2/core', './../store/todoitem'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core', './../store/todostore'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,15 +8,15 @@ System.register(['angular2/core', './../store/todoitem'], function(exports_1, co
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, todoitem_1;
+    var core_1, todostore_1;
     var TodoItem;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (todoitem_1_1) {
-                todoitem_1 = todoitem_1_1;
+            function (todostore_1_1) {
+                todostore_1 = todostore_1_1;
             }],
         execute: function() {
             TodoItem = (function () {
@@ -28,7 +26,7 @@ System.register(['angular2/core', './../store/todoitem'], function(exports_1, co
                     this.itemUpdated = new core_1.EventEmitter();
                 }
                 TodoItem.prototype.doneClicked = function () {
-                    this.done.emit(this.item.uuid);
+                    this.done.emit(this.item);
                 };
                 TodoItem.prototype.toggle = function () {
                     this.itemUpdated.emit({
@@ -55,7 +53,7 @@ System.register(['angular2/core', './../store/todoitem'], function(exports_1, co
                 };
                 __decorate([
                     core_1.Input(), 
-                    __metadata('design:type', todoitem_1.TodoItem)
+                    __metadata('design:type', todostore_1.TodoItem)
                 ], TodoItem.prototype, "item", void 0);
                 __decorate([
                     core_1.Output(), 
@@ -75,10 +73,10 @@ System.register(['angular2/core', './../store/todoitem'], function(exports_1, co
                     __metadata('design:paramtypes', [])
                 ], TodoItem);
                 return TodoItem;
-            }());
+            })();
             exports_1("default", TodoItem);
         }
     }
 });
 
-//# sourceMappingURL=todoitem.js.map
+//# sourceMappingURL=../../maps/app/todoitem/todoitem.js.map

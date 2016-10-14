@@ -1,6 +1,4 @@
-System.register(['angular2/core', '../store/todostore', '../todoitem/todoitem', '../store/actions'], function(exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
+System.register(['angular2/core', './../store/todostore', '../todoitem/todoitem'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,7 +8,7 @@ System.register(['angular2/core', '../store/todostore', '../todoitem/todoitem', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, todostore_1, todoitem_1, actions_1;
+    var core_1, todostore_1, todoitem_1;
     var TodoList;
     return {
         setters:[
@@ -22,9 +20,6 @@ System.register(['angular2/core', '../store/todostore', '../todoitem/todoitem', 
             },
             function (todoitem_1_1) {
                 todoitem_1 = todoitem_1_1;
-            },
-            function (actions_1_1) {
-                actions_1 = actions_1_1;
             }],
         execute: function() {
             TodoList = (function () {
@@ -33,23 +28,23 @@ System.register(['angular2/core', '../store/todostore', '../todoitem/todoitem', 
                     this.store = store;
                 }
                 TodoList.prototype.addItem = function () {
-                    this.store.dispatch(actions_1.addItem(this.newItem));
+                    this.store.addItem(this.newItem);
                     this.newItem = '';
                 };
-                TodoList.prototype.removeItem = function (itemId) {
-                    this.store.dispatch(actions_1.removeItem(itemId));
+                TodoList.prototype.removeItem = function (item) {
+                    this.store.removeItem(item.uuid);
                 };
                 TodoList.prototype.itemUpdated = function (event) {
                     if (event.text !== undefined) {
                         if (event.text === '') {
-                            this.store.dispatch(actions_1.removeItem(event.itemId));
+                            this.store.removeItem(event.itemId);
                         }
                         else {
-                            this.store.dispatch(actions_1.updateItemText(event.itemId, event.text));
+                            this.store.updateText(event.itemId, event.text);
                         }
                     }
                     if (event.completed !== undefined) {
-                        this.store.dispatch(actions_1.updateItemCompletion(event.itemId, event.completed));
+                        this.store.updatedCompletion(event.itemId, event.completed);
                     }
                 };
                 TodoList = __decorate([
@@ -59,13 +54,13 @@ System.register(['angular2/core', '../store/todostore', '../todoitem/todoitem', 
                         styleUrls: ['app/todolist/todolist.css'],
                         directives: [todoitem_1.default]
                     }), 
-                    __metadata('design:paramtypes', [todostore_1.default])
+                    __metadata('design:paramtypes', [todostore_1.TodoStore])
                 ], TodoList);
                 return TodoList;
-            }());
+            })();
             exports_1("default", TodoList);
         }
     }
 });
 
-//# sourceMappingURL=todolist.js.map
+//# sourceMappingURL=../../maps/app/todolist/todolist.js.map
